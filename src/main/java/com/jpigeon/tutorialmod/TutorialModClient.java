@@ -1,6 +1,7 @@
 package com.jpigeon.tutorialmod;
 
 import com.jpigeon.ridebattlelib.example.ExampleBasic;
+import com.jpigeon.tutorialmod.rider.DynamicRider;
 import com.jpigeon.tutorialmod.rider.MyRider;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -22,6 +23,7 @@ public class TutorialModClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // 永远在这初始化骑士配置
         // ExampleBasic.init();
-        MyRider.init();
+        // MyRider.init();
+        DynamicRider.init();
     }
 }
