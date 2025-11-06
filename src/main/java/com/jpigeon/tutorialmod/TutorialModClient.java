@@ -23,7 +23,7 @@ public class TutorialModClient {
     static void onClientSetup(FMLClientSetupEvent event) {
         // 永远在这初始化骑士配置
         // ExampleBasic.init();
-        // MyRider.init();
-        DynamicRider.init();
+        MyRider.init();
+        // DynamicRider.init();
     }
 }

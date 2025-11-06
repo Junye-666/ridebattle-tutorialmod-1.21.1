@@ -25,13 +25,13 @@ public class DynamicRider {
             new RiderConfig(DYNAMIC_RIDER_ID)
                     .setAllowDynamicForms(true) // 这是最关键的一点，允许系统为此骑士生成动态形态
                     .setDriverItem(Items.BRICK, EquipmentSlot.OFFHAND) // 放在副手的驱动器（砖块）
-                    .addDriverSlot(
+                    .addMainDriverSlot(
                             DYNAMIC_SLOT_ONE,
                             List.of(Items.DIAMOND, Items.EMERALD),
                             true,
                             true
                             )
-                    .addDriverSlot(
+                    .addMainDriverSlot(
                             DYNAMIC_SLOT_TWO,
                             List.of(Items.GOLD_INGOT, Items.IRON_INGOT),
                             true,
