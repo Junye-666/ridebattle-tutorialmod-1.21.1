@@ -22,7 +22,7 @@ public class MyRider {
     public static final RiderConfig MYRIDER = new RiderConfig(RIDER_ID)
             .setDriverItem(Items.GOLDEN_LEGGINGS, // 金护腿为驱动器
                     EquipmentSlot.LEGS) // 穿戴在腿部
-            .addMainDriverSlot( // 在驱动器内"开个洞"放物品
+            .addDriverSlot( // 在驱动器内"开个洞"放物品
                     SLOT_ONE, // 槽位ID
                     List.of(Items.GOLD_INGOT, Items.BONE), // 此槽位可以放 金锭, 骨头
                     true,
