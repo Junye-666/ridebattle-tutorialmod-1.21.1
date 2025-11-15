@@ -20,9 +20,9 @@ public class MyRider {
 
     // RiderConfig的实际组装
     public static final RiderConfig MYRIDER = new RiderConfig(RIDER_ID)
-            .setDriverItem(Items.GOLDEN_LEGGINGS, // 金护腿为驱动器
+            .setMainDriverItem(Items.GOLDEN_LEGGINGS, // 金护腿为驱动器
                     EquipmentSlot.LEGS) // 穿戴在腿部
-            .addDriverSlot( // 在驱动器内"开个洞"放物品
+            .addMainDriverSlot( // 在驱动器内"开个洞"放物品
                     SLOT_ONE, // 槽位ID
                     List.of(Items.GOLD_INGOT, Items.BONE), // 此槽位可以放 金锭, 骨头
                     true,
@@ -53,11 +53,31 @@ public class MyRider {
             ) // 指定形态需要物品, 当腰带里为这些物品时变成这个形态
             ;
 
+    // 为今天的教学，再来一个形态
+    public static final FormConfig MYRIDER_BONE_FORM = new FormConfig(BONE_FORM)
+            .setArmor(
+                    Items.SKELETON_SKULL,
+                    null,
+                    null,
+                    null
+            )
+            .addRequiredItem(
+                    SLOT_ONE,
+                    Items.BONE // 需要骨头
+            )
+            .setTriggerType(TriggerType.AUTO) // 放入骨头时自动变身
+            .addGrantedItem(Items.BOW.getDefaultInstance())
+            ;
 
     public static void registerMyRider() { // 注册+绑定方法, 在这将骑士与形态配置绑定
-        MYRIDER.addForm(MYRIDER_GOLD_FORM);
+        MYRIDER.addForm(MYRIDER_GOLD_FORM)
+                .addForm(MYRIDER_BONE_FORM);
 
         MYRIDER.setBaseForm(MYRIDER_GOLD_FORM.getFormId()); // 将金形态设为基础形态(这一句可选)
+
+        // 明确变身时的暂停流程
+        MYRIDER_GOLD_FORM.setShouldPause(true); // 金形态变身时进入缓冲阶段(等待动画执行/音效播放)
+        MYRIDER_BONE_FORM.setShouldPause(false); // 为对比：骨头形态不暂停
 
         RiderRegistry.registerRider(MYRIDER); // 通过RiderRegistry这个类注册骑士
 
