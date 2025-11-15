@@ -53,28 +53,12 @@ public class MyRider {
             ) // 指定形态需要物品, 当腰带里为这些物品时变成这个形态
             ;
 
-    public static final FormConfig MYRIDER_BONE_FORM = new FormConfig(BONE_FORM)
-            .setArmor(
-                    Items.SKELETON_SKULL,
-                    Items.AIR, // 除Legs以外必须要求传入null以外的物品，可以是Items.AIR
-                    null,
-                    Items.AIR
-
-            )
-            .setTriggerType(TriggerType.AUTO) // AUTO，在物品插入时自动变身
-            .addEffect(MobEffects.HUNGER, 114514, 0, true)
-            .addGrantedItem(Items.BOW.getDefaultInstance())
-            .addRequiredItem(SLOT_ONE, Items.BONE);
-
 
     public static void registerMyRider() { // 注册+绑定方法, 在这将骑士与形态配置绑定
-        MYRIDER.addForm(MYRIDER_GOLD_FORM)
-                .addForm(MYRIDER_BONE_FORM); // 将金形态赋予MYRIDER
+        MYRIDER.addForm(MYRIDER_GOLD_FORM);
 
         MYRIDER.setBaseForm(MYRIDER_GOLD_FORM.getFormId()); // 将金形态设为基础形态(这一句可选)
 
-        MYRIDER_GOLD_FORM.setShouldPause(true); // 变身此形态时进入缓冲阶段
-        MYRIDER_BONE_FORM.setShouldPause(false); // 为了对比，骨头形态不缓冲
         RiderRegistry.registerRider(MYRIDER); // 通过RiderRegistry这个类注册骑士
 
     }
