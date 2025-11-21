@@ -8,7 +8,6 @@ import com.jpigeon.tutorialmod.rider.MyRider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Items;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingEvent;
@@ -28,9 +27,7 @@ public class EventHandler {
             RiderManager.playPublicSound(event.getPlayer(), SoundEvents.AMETHYST_BLOCK_BREAK); // 变身金形态前：播放紫晶块破碎
         }
 
-        if (event.getFormId().equals(MyRider.BONE_FORM)){
-            // 骨头形态无待机音
-        }
+        // 骨头形态无待机音
     }
 
     @SubscribeEvent
