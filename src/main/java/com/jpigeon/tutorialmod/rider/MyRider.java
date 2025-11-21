@@ -5,6 +5,7 @@ import com.jpigeon.ridebattlelib.core.system.henshin.RiderConfig;
 import com.jpigeon.ridebattlelib.core.system.henshin.RiderRegistry;
 import com.jpigeon.ridebattlelib.core.system.henshin.helper.TriggerType;
 import com.jpigeon.tutorialmod.TutorialMod;
+import com.jpigeon.tutorialmod.rider.skills.RiderSkills;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -51,6 +52,7 @@ public class MyRider {
                     SLOT_ONE, // 第一个槽位中
                     Items.GOLD_INGOT // 有金锭
             ) // 指定形态需要物品, 当腰带里为这些物品时变成这个形态
+            .addSkill(RiderSkills.RIDER_PUNCH) // 可在此赋予技能
             ;
 
     // 为今天的教学，再来一个形态
@@ -74,6 +76,10 @@ public class MyRider {
                 .addForm(MYRIDER_BONE_FORM);
 
         MYRIDER.setBaseForm(MYRIDER_GOLD_FORM.getFormId()); // 将金形态设为基础形态(这一句可选)
+
+        // 演示可扩展性：可以在不同地方调用及赋予Config其它内容
+        // 比如在上方定义完的FormConfig外：
+        MYRIDER_GOLD_FORM.addSkill(RiderSkills.RIDER_KICK); // 也可以在此赋予技能
 
         // 明确变身时的暂停流程
         MYRIDER_GOLD_FORM.setShouldPause(true); // 金形态变身时进入缓冲阶段(等待动画执行/音效播放)

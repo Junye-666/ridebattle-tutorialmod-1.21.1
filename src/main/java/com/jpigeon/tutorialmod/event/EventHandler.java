@@ -20,6 +20,8 @@ public class EventHandler {
             // 在此实现特定骑士的(待机)通用动画/特效/音效
             // 使用RiderManger中提供的预制音效方法
             RiderManager.playPublicSound(event.getPlayer(), SoundEvents.PLAYER_LEVELUP); // 变身骑士前播放升级音效
+            RiderManager.scheduleTicks(40, () -> RiderManager.completeHenshin(event.getPlayer())); // 在40刻后执行变身，可以用于变身动画播放
+
         }
 
         if (event.getFormId().equals(MyRider.GOLD_FORM)){
@@ -39,16 +41,6 @@ public class EventHandler {
         // 可以实现更多花样（比如特定形态相互切换有特别效果）
     }
 
-    // 因为MyRider中，金形态被暂停，进入缓冲，我们需要在某处继续变身流程
-    @SubscribeEvent
-    public static void onJump(LivingEvent.LivingJumpEvent event){
-        // 这里在跳跃时完成变身
-        if (event.getEntity() instanceof Player player){
-            // 在跳跃时完成变身
-            RiderManager.completeHenshin(player);
-        }
-    }
-
     @SubscribeEvent
     public static void postHenshin(HenshinEvent.Post event){
         // 变身完成音效/特效等
@@ -64,12 +56,10 @@ public class EventHandler {
     @SubscribeEvent
     public static void onUnhenshin(UnhenshinEvent.Pre event){
         Player player = event.getPlayer();
-        RiderConfig config = RiderManager.getActiveRiderConfig(player);
-        if (config == null) return;
-        ResourceLocation formId = RiderManager.getCurrentForm(player);
-        if (formId == null) return;
+        ResourceLocation riderId = event.getRiderId();
+        ResourceLocation formId = event.getFormId();
 
-        if (config.equals(MyRider.MYRIDER)){
+        if (riderId.equals(MyRider.MYRIDER.getRiderId())){
             // 为特定骑士播放解除音效/特效
             RiderManager.playPublicSound(player, SoundEvents.PLAYER_DEATH);
         }
@@ -81,6 +71,15 @@ public class EventHandler {
     }
 
     // 其它Event演示
+
+
+    @SubscribeEvent
+    public static void onPenaltySound(PenaltyEvent.Sound event){
+        event.setCanceled(true);
+        // 在这里把你的音效添加进来，也可以为特定骑士/形态id定制
+        // RiderManager.playPublicSound();
+    }
+
 //
 //    @SubscribeEvent
 //    public static void onInsert(ItemInsertionEvent.Pre event){
