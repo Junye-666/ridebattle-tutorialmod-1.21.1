@@ -84,19 +84,19 @@ public class EventHandler {
     }
 
     // 其它Event演示
-
-    @SubscribeEvent
-    public static void onInsert(ItemInsertionEvent.Pre event){
-        if (event.getStack().is(Items.BONE)){ // 这里注意对比方式，不要用equals
-            event.setStack(Items.GOLD_INGOT.getDefaultInstance()); // 每当尝试存入骨头时就会变成金锭！
-        }
-    }
-
-    @SubscribeEvent
-    public static void onExtract(SlotExtractionEvent.Pre event){
-        if (event.getExtractedStack().is(Items.GOLD_INGOT)){
-            event.setExtractedStack(Items.IRON_INGOT.getDefaultInstance()); // 金锭拔出时会变成铁锭
-        }
-    }
+//
+//    @SubscribeEvent
+//    public static void onInsert(ItemInsertionEvent.Pre event){
+//        if (event.getStack().is(Items.BONE)){ // 这里注意对比方式，不要用equals
+//            event.setStack(Items.GOLD_INGOT.getDefaultInstance()); // 每当尝试存入骨头时就会变成金锭！
+//        }
+//    }
+//
+//    @SubscribeEvent
+//    public static void onExtract(SlotExtractionEvent.Pre event){
+//        if (event.getExtractedStack().is(Items.GOLD_INGOT)){
+//            event.setExtractedStack(Items.IRON_INGOT.getDefaultInstance()); // 金锭拔出时会变成铁锭
+//        }
+//    }
 
 }
